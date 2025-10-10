@@ -1,0 +1,537 @@
+<html class="home_html" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link crossorigin="" data-precedence="next" href="/_next/static/css/d3df112486f97f47.css" rel="stylesheet"/>
+  <link crossorigin="" data-precedence="next" href="/_next/static/css/8419bf7e20c871f2.css" rel="stylesheet"/>
+  <link crossorigin="" data-precedence="next" href="/_next/static/css/4d6f57d3dfe0f65a.css" rel="stylesheet"/>
+  <link crossorigin="" data-precedence="next" href="/_next/static/css/2abcbb3261f927d1.css" rel="stylesheet"/>
+  <link crossorigin="" data-precedence="next" href="/_next/static/css/36c8218728dc84f8.css" rel="stylesheet"/>
+  <link as="script" crossorigin="" fetchpriority="low" href="/_next/static/chunks/webpack-632cbce4774ba455.js" rel="preload"/>
+  <link as="style" crossorigin="" href="/_next/static/css/36c8218728dc84f8.css" rel="preload"/>
+  <title>
+   KMS Admin
+  </title>
+  <meta content="KMS" name="description"/>
+  <link href="/favicon.ico" rel="icon" sizes="16x16" type="image/x-icon"/>
+ </head>
+ <body>
+  <div class="container-fluid h-100">
+   <div class="row h-100">
+    <div class="admin_navigation h-100">
+     <div class="custom_nav_main">
+      <div class="logo">
+       <img alt="Logo" class="float-start mb-0 img-thumbnail" src="https://kms-dev.gilead.com/assets/2/logo/logo_km.png"/>
+       ROCK
+      </div>
+      <div class="custom_nav">
+       <div class="flex-column nav">
+        <a class="nav-link" href="#" role="button" tabindex="0">
+         <i class="bi bi-house-door">
+         </i>
+         Home
+        </a>
+        <a class="nav-link" href="#" role="button" tabindex="0">
+         <i class="bi bi-pie-chart-fill">
+         </i>
+         Dashboard
+        </a>
+        <a aria-expanded="true" class="nav-link" href="#" role="button" tabindex="0">
+         <i class="bi bi-gear">
+         </i>
+         Configuration
+         <i class="bi bi-chevron-up dropdown_icon" title="Collapse">
+         </i>
+        </a>
+        <div class="collapse show" id="table_data" style="">
+         <div class="flex-column custom_subnav nav">
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Region
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Country
+          </a>
+          <a class="selected_nav nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Dropdown Value
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Category
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Question
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Rule Set
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Dependency Rule Set
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Dependency Rule
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Question Group
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-card-list">
+           </i>
+           Category Question Group
+          </a>
+         </div>
+        </div>
+        <a aria-expanded="false" class="nav-link" href="#" role="button" tabindex="0">
+         <i class="bi bi-database-gear">
+         </i>
+         Workspace
+         <i class="bi bi-chevron-down dropdown_icon" title="Expand">
+         </i>
+        </a>
+        <div class="collapse" id="workspace_data">
+         <div class="flex-column custom_subnav nav">
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-database-fill">
+           </i>
+           Repository
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-person-fill-lock">
+           </i>
+           Permission
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-link">
+           </i>
+           Quick Link
+          </a>
+         </div>
+        </div>
+        <a aria-expanded="false" class="nav-link" href="#" role="button" tabindex="0">
+         <i class="bi bi-grid-1x2">
+         </i>
+         Navigation
+         <i class="bi bi-chevron-down dropdown_icon" title="Expand">
+         </i>
+        </a>
+        <div class="collapse" id="nav_data">
+         <div class="flex-column custom_subnav nav">
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-file-arrow-up">
+           </i>
+           Top Navigation
+          </a>
+          <a class="nav-link" href="#" role="button" tabindex="0">
+           <i class="bi bi-layout-sidebar-inset-reverse">
+           </i>
+           Floating Navigation
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="custom_nav_footer">
+       <div class="dropdown">
+        <button aria-expanded="false" class="dropdown-toggle btn btn-primary" type="button">
+         ROCK
+        </button>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="admin_pagecontent h-100 p-0">
+     <div class="admin_pagecontent_header">
+      <header class="header">
+       <div class="container-fluid">
+        <div class="row">
+         <div class="col text-right p-0 position-relative">
+          <div class="w-100 p-3 text-end">
+           Vincent Kumar
+           <div class="nav_toggle left_toggle_icon">
+            <i class="bi bi-chevron-double-left" title="Collapse">
+            </i>
+           </div>
+           <i class="bi bi-person-circle profile_icon">
+           </i>
+          </div>
+         </div>
+        </div>
+       </div>
+      </header>
+     </div>
+     <div class="admin_pagecontent_main">
+      <main>
+       <div class="container-fluid">
+        <div class="row">
+         <div class="col p-3">
+          <h3 class="mt-2">
+           Dropdown Value
+          </h3>
+         </div>
+        </div>
+        <div class="row">
+         <div class="col ps-3 pe-3">
+          <div class="main_cont p-3">
+           <div>
+            <div>
+             <br/>
+             <div class="d-flex flex-row justify-content-start align-items-center pb-3">
+              <div class="col-4">
+               <div class="filterBox input-group">
+                <input aria-describedby="basic-addon2" aria-label="Search" class="rounded-left form-control" placeholder="Search" value=""/>
+                <button class="border-left-0 border rounded-right btn btn-outline-secondary" id="button-addon2" type="button">
+                 <svg aria-hidden="true" class="svg-inline--fa fa-magnifying-glass btn-add-icon align-items-center" data-icon="magnifying-glass" data-prefix="fas" focusable="false" role="img" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" fill="currentColor">
+                  </path>
+                 </svg>
+                </button>
+                <div class="invalid-feedback">
+                 Please provide valid input
+                </div>
+               </div>
+              </div>
+              <div class="col-4">
+               <button class="ms-1 custom_btn_red btn btn-outline-secondary" type="button">
+                Reset
+               </button>
+              </div>
+              <div class="col-4 text-end">
+               <button class="ms-1 btn btn-success" type="button">
+                Add New Record
+               </button>
+              </div>
+             </div>
+             <div class="d-flex flex-column">
+              <div class="dashboard_auditlog_table">
+               <table class="mapping-list table table-sm table-striped table-bordered table-hover">
+                <thead class="list-header">
+                 <tr>
+                  <th class="text-center" style="min-width: 100px;">
+                   Action
+                  </th>
+                  <th style="min-width: 75px;">
+                   ID
+                  </th>
+                  <th style="min-width: 250px;">
+                   Name
+                  </th>
+                  <th>
+                   Value (semicolon separated)
+                  </th>
+                 </tr>
+                </thead>
+                <tbody>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   25
+                  </td>
+                  <td>
+                   boolean values
+                  </td>
+                  <td>
+                   true;false
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   26
+                  </td>
+                  <td>
+                   date values
+                  </td>
+                  <td>
+                   29aug 24;12/4/20;5.8.24
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   47
+                  </td>
+                  <td>
+                   Dropdown_03_01_2025_21_25_33
+                  </td>
+                  <td>
+                   Option 1 - Site Sourced; Option 2 - Gilead Supplied, Unlabeled, Sourced in country; Option 3 - Gilead Supplied, Unlabeled, Sourced centrally (ICH country); Option 4 - Gilead Supplied, Labeled, Sourced in country; Option 5 - Gilead Supplied, Labeled, Sourced centrally (ICH country);
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   48
+                  </td>
+                  <td>
+                   Dropdown_03_01_2025_23_26_43
+                  </td>
+                  <td>
+                   Option 1 - Site Sourced; Option 2 - Gilead Supplied, Unlabeled, Sourced in country; Option 3 - Gilead Supplied, Unlabeled, Sourced centrally (ICH country);
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   49
+                  </td>
+                  <td>
+                   Dropdown_04_01_2025_00_30_01
+                  </td>
+                  <td>
+                   Option 1 - Site Sourced; Option 2 - Gilead Supplied, Unlabeled, Sourced in country; Option 3 - Gilead Supplied, Unlabeled, Sourced centrally (ICH country);
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   50
+                  </td>
+                  <td>
+                   Dropdown_06_01_2025_15_13_58
+                  </td>
+                  <td>
+                   Option 1 - Site Sourced; Option 2 - Gilead Supplied, Unlabeled, Sourced in country; Option 3 - Gilead Supplied, Unlabeled, Sourced centrally (ICH country);
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   32
+                  </td>
+                  <td>
+                   Fruit Options
+                  </td>
+                  <td>
+                   Apple;Banana;Cherry
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   23
+                  </td>
+                  <td>
+                   Language
+                  </td>
+                  <td>
+                   English;Local Language;
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   15
+                  </td>
+                  <td>
+                   Party responsible from EC submissions
+                  </td>
+                  <td>
+                   Gilead Affiliate; CRO;
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="text-center">
+                   <i class="bi bi-eye action_icons" title="View">
+                   </i>
+                   <i class="bi bi-pencil-square action_icons" title="Edit">
+                   </i>
+                   <i class="bi bi-trash3 action_icons" title="Delete">
+                   </i>
+                  </td>
+                  <td>
+                   14
+                  </td>
+                  <td>
+                   Party responsible from MOH submissions
+                  </td>
+                  <td>
+                   Gilead Affiliate; CRO;
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <ul class="mt-2 align-self-end pagination">
+               <li class="page-item">
+                <a class="page-link" href="#" role="button" tabindex="0">
+                 <span aria-hidden="true">
+                  «
+                 </span>
+                 <span class="visually-hidden">
+                  First
+                 </span>
+                </a>
+               </li>
+               <li class="page-item disabled">
+                <span class="page-link">
+                 <span aria-hidden="true">
+                  ‹
+                 </span>
+                 <span class="visually-hidden">
+                  Previous
+                 </span>
+                </span>
+               </li>
+               <li class="page-item active">
+                <span class="page-link">
+                 1
+                 <span class="visually-hidden">
+                  (current)
+                 </span>
+                </span>
+               </li>
+               <li class="page-item">
+                <a class="page-link" href="#" role="button" tabindex="0">
+                 2
+                </a>
+               </li>
+               <li class="page-item">
+                <a class="page-link" href="#" role="button" tabindex="0">
+                 3
+                </a>
+               </li>
+               <li class="page-item">
+                <a class="page-link" href="#" role="button" tabindex="0">
+                 <span aria-hidden="true">
+                  ›
+                 </span>
+                 <span class="visually-hidden">
+                  Next
+                 </span>
+                </a>
+               </li>
+               <li class="page-item">
+                <a class="page-link" href="#" role="button" tabindex="0">
+                 <span aria-hidden="true">
+                  »
+                 </span>
+                 <span class="visually-hidden">
+                  Last
+                 </span>
+                </a>
+               </li>
+              </ul>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </main>
+     </div>
+     <div class="admin_pagecontent_footer">
+      <footer class="footer">
+       <div class="container-fluid">
+        <div class="row">
+         <div class="col-8 p-2">
+          Powered By:
+          <span class="footer-version">
+           <a class="hover-effect powered-by fst-italic" href="https://gileadconnect.sharepoint.com/sites/DevOps" target="_blank">
+            Development Systems
+           </a>
+          </span>
+          Content Owner:
+          <span class="footer-version">
+           <a class="hover-effect powered-by fst-italic" href="mailto:prateekkumar.jain5@gilead.com" target="_blank">
+            Prateek Kumar Jain (Contractor)
+           </a>
+          </span>
+         </div>
+         <div class="col-4 p-2">
+          <p class="year_cont m-0">
+           © 2025 Gilead
+          </p>
+         </div>
+        </div>
+       </div>
+      </footer>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="Toastify">
+  </div>
+  <next-route-announcer style="position: absolute;">
+  </next-route-announcer>
+ </body>
+</html>
