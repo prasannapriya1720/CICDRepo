@@ -19,11 +19,42 @@ jobs:
       with:
         python-version: '3.11'
 
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Selenium tests
+    - name: Install Google Chrome
       run: |
-        pytest --maxfail=1 --disable-warnings -v
+        sudo apt-get update
+        sudo apt-get install -y wget unzip xvfb libxi6 libgconf-2-4
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+
+    - name: Install ChromeDriver
+      run: |
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+        wget https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/local/bin/
+        sudo chmod +x /usr/local/bin
+
+    - name: Run Selenium tests
+      env:
+        TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
+      run: |
+        pytest --maxfail=1 --disable-warnings -v --junitxml=results.xml
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: pytest-results
+        path: results.xml
