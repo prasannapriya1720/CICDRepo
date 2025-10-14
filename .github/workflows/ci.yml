@@ -59,6 +59,7 @@ jobs:
     - name: Run Selenium tests
       env:
         TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
+        PYTHONPATH: ${{ github.workspace }}
       run: |
         pytest --maxfail=1 --disable-warnings -v --junitxml=results.xml
 
