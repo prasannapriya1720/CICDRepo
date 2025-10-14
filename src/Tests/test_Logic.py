@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import pytest
 from src.actions.actions import Actions
 
@@ -89,7 +89,6 @@ def test_excel_driven_execution(step):
     finally:
         if driver:
             driver.quit()
-=======
 import glob
 
 import os.path
@@ -2020,4 +2019,4 @@ class LogicTest(unittest.TestCase):
         # sp.upload_folder(latest_folder_path)
 
         print("Test Completed")
->>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
+
