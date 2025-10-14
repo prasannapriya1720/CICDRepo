@@ -11302,7 +11302,8 @@ class Actions():
                     fromfile="Saved CSS", tofile="Current CSS", lineterm=""
                 ))
                 if css_diff:
-                    ActualResult = ActualResult + f"\n\n CSS differences for {page_name}:\n{'\n'.join(css_diff)}"
+                    css_diff_text = "\n".join(css_diff)
+                    ActualResult = ActualResult + f"\n\n CSS differences for {page_name}:\n{css_diff_text}"
                     FlagTestCase = "Fail"
                 else:
                     ActualResult = ActualResult + f"\n\n No differences in CSS for {page_name}."
@@ -16145,6 +16146,7 @@ class Actions():
                 ExpectedResult, ActualResult.strip(), FlagTestCase, TestCase_Summary
             )
             return driver
+
 
 
 
