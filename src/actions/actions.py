@@ -11268,7 +11268,8 @@ class Actions():
                     fromfile="Saved HTML", tofile="Current HTML", lineterm=""
                 ))
                 if html_diff:
-                    ActualResult = f"HTML differences for {page_name}:\n{'\n'.join(html_diff)}"
+                    diff_text = "\n".join(html_diff)
+                    ActualResult = f"HTML differences for {page_name}:\n{diff_text}"
                     FlagTestCase = "Fail"
                 else:
                     ActualResult = f"No differences in HTML for {page_name}."
@@ -16144,6 +16145,7 @@ class Actions():
                 ExpectedResult, ActualResult.strip(), FlagTestCase, TestCase_Summary
             )
             return driver
+
 
 
 
