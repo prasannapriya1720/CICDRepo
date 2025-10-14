@@ -42,7 +42,7 @@ jobs:
     - name: Install ChromeDriver
       run: |
         sudo apt-get update
-        sudo apt-get install -y wget unzip xvfb libxi6 libgbm1 libxss1 libnss3 fonts-liberation libappindicator3-1 xdg-utils
+        sudo apt-get install -y wget unzip xvfb libxi6 libgbm1 libxss1 libnss3 fonts-liberation libappindicator3-dev xdg-utils
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
 
