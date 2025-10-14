@@ -11531,7 +11531,8 @@ class Actions():
                         tofile="Current CSS"
                     ))
                     # print(f"CSS differences:\n{css_diff}")
-                    ActualResult = ActualResult + f"\n\n CSS differences for {page_name}:\n{'\n'.join(css_diff)}"
+                    css_diff_text = "\n".join(css_diff)
+                    ActualResult = ActualResult + f"\n\n CSS differences for {page_name}:\n{css_diff_text}"
                     FlagTestCase = "Fail"
             else:
                 with open(saved_css_path, "w", encoding="utf-8") as file:
@@ -16146,6 +16147,7 @@ class Actions():
                 ExpectedResult, ActualResult.strip(), FlagTestCase, TestCase_Summary
             )
             return driver
+
 
 
 
