@@ -32,14 +32,21 @@ from selenium.webdriver.chrome.options import Options
 import os
 import re
 from selenium.webdriver.common.action_chains import ActionChains
+<<<<<<< HEAD
+=======
+
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
 import requests
 from bs4 import BeautifulSoup
 import glob
 from datetime import datetime
 from PIL import Image, ImageChops, ImageDraw
 from difflib import unified_diff
+<<<<<<< HEAD
 from selenium.webdriver.edge.service import Service
 
+=======
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
 
 # from src.Tests.test_Logic import LogicTest
 # import src.Tests.test_Logic
@@ -155,7 +162,11 @@ class Actions():
             lines[0] = message
         return lines[0]
 
+<<<<<<< HEAD
     def invokeBrowser_old(self, browser, modulename, TestCaseName, TestStepName, TestStepID, Requirement, testStepDesc,
+=======
+    def invokeBrowser(self, browser, modulename, TestCaseName, TestStepName, TestStepID, Requirement, testStepDesc,
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
                       Keywords,
                       Locator, Testdata, TestCase_Summary):
         FlagTestCase = "Pass"
@@ -227,7 +238,11 @@ class Actions():
                 print("Launching edge browser.........")
 
                 self.driver = webdriver.Edge(
+<<<<<<< HEAD
                     'D:\\New folder\\Gilead\\ROCK Automation\\KMS_Test-Automation_21Aug2025\\KMS_Test-Automation_18June2025_1\\src\\Drivers\\msedgedriver.exe')
+=======
+                    'C:\\Users\\ppriya1\\Downloads\\test-automation26Dec23\\test-automation\\edgedriver\\msedgedriver.exe')
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
                 self.driver.implicitly_wait(10)
                 self.driver.maximize_window()
                 self.driver.get(Testdata)
@@ -250,6 +265,7 @@ class Actions():
                                              ActualResult, FlagTestCase, TestCase_Summary)
         return self.driver
 
+<<<<<<< HEAD
 
     def invokeBrowser(self, browser: str, modulename: str, TestCaseName, TestStepName, TestStepID, Requirement,
                       testStepDesc,
@@ -368,6 +384,11 @@ class Actions():
                       testStepDesc,
                       Keywords,
                       Locator, Testdata, TestCase_Summary):
+=======
+    def enterUrl(self, driver, browser, modulename, TestCaseName, TestStepName, TestStepID, Requirement, testStepDesc,
+                 Keywords,
+                 Locator, Testdata, TestCase_Summary):
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
         FlagTestCase = "Pass"
         exMsg = ""
         ExpectedResult = ""
@@ -8637,10 +8658,15 @@ class Actions():
                                              FlagTestCase, TestCase_Summary)
             return driver
 
+<<<<<<< HEAD
     def enter_unique_text1(self, browser: str, modulename: str, TestCaseName, TestStepName, TestStepID, Requirement,
                       testStepDesc,
                       Keywords,
                       Locator, Testdata, TestCase_Summary):
+=======
+    def enter_unique_text1(self, driver, browser, modulename, TestCaseName, TestStepName, TestStepID,
+                           Requirement, testStepDesc, Keywords, Locator, Testdata, TestCase_Summary):
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
         global element_value
         FlagTestCase = "Pass"
         exMsg = ""
@@ -8975,7 +9001,11 @@ class Actions():
         global element
         toast_text = ""
         count = 0
+<<<<<<< HEAD
         pattern = r"Abbreviation must be unique within the workspace, so added suffix \d+"
+=======
+        pattern = "Abbreviation must be unique within the workspace, so added suffix \d+"
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
         try:
             """
             Waits for a toast message to appear and verifies its content.
@@ -12799,7 +12829,11 @@ class Actions():
                                              ActualResult,
                                              FlagTestCase, TestCase_Summary)
             return driver
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
     def search_and_create_Question(self, driver, browser, modulename, TestCaseName, TestStepName, TestStepID,
                                      Requirement, testStepDesc, Keywords, Locator, Testdata, TestCase_Summary):
         global column_value, rows, lastpage_number
@@ -16002,8 +16036,12 @@ class Actions():
         global element
         toast_text = ""
         count = 0
+<<<<<<< HEAD
         pattern = r"Abbreviation must be unique within the workspace, so added suffix \d+"
 
+=======
+        pattern = "Abbreviation must be unique within the workspace, so added suffix \d+"
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
         try:
             """
             Waits for a toast message to appear and verifies its content.
@@ -16130,5 +16168,8 @@ class Actions():
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)

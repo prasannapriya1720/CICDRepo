@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Black">
     <option name="sdkName" value="Python 3.12 virtualenv at C:\Users\ppriya1\Downloads\KMS_Test-Automation_18June2025_1\.venv2" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (.venv)" project-jdk-type="Python SDK" />
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Black">
+    <option name="sdkName" value="Python 3.12 virtualenv at C:\Users\ppriya1\Downloads\KMS_Test-Automation_18June2025_1\.venv2" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 virtualenv at C:\Users\ppriya1\Downloads\KMS_Test-Automation_18June2025_1\.venv2" project-jdk-type="Python SDK" />
+>>>>>>> 68acd25 (Full project push with updated workflow and long paths enabled)
 </project>
