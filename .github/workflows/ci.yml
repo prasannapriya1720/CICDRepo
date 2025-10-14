@@ -41,11 +41,10 @@ jobs:
 
     - name: Install ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-        wget https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/local/bin/
-        sudo chmod +x /usr/local/bin
+        sudo apt-get update
+        sudo apt-get install -y wget unzip xvfb libxi6 libgbm1 libxss1 libnss3 fonts-liberation libappindicator3-1 xdg-utils
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
 
     - name: Run Selenium tests
       env:
