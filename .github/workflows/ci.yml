@@ -35,16 +35,18 @@ jobs:
     - name: Install Google Chrome
       run: |
         sudo apt-get update
-        sudo apt-get install -y wget unzip xvfb libxi6 libgconf-2-4
+        sudo apt-get install -y wget gnupg unzip xvfb libxi6 libgbm1 libxss1 libnss3 fonts-liberation libappindicator3-dev xdg-utils
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
 
     - name: Install ChromeDriver
       run: |
-        sudo apt-get update
-        sudo apt-get install -y wget unzip xvfb libxi6 libgbm1 libxss1 libnss3 fonts-liberation libappindicator3-dev xdg-utils
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+' | head -1)
+        DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
+        wget "https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip"
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/local/bin/
+        chromedriver --version
 
     - name: Run Selenium tests
       env:
