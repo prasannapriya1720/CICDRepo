@@ -8640,11 +8640,6 @@ class Actions():
             return driver
 
 
-    def enter_unique_text1(self, browser: str, modulename: str, TestCaseName, TestStepName, TestStepID, Requirement,
-                      testStepDesc,
-                      Keywords,
-                      Locator, Testdata, TestCase_Summary):
-
     def enter_unique_text1(self, driver, browser, modulename, TestCaseName, TestStepName, TestStepID,
                            Requirement, testStepDesc, Keywords, Locator, Testdata, TestCase_Summary):
 
