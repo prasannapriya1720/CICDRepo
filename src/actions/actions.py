@@ -10874,7 +10874,12 @@ class Actions():
                                                    for y in range(diff_bbox[1], diff_bbox[3])
                                                    if diff.getpixel((x, y)) != (0, 0, 0, 0))
                 }
-                ActualResult = ActualResult + f"snapshots do not match -> {diff_details}, \n\nsee the difference image in this location <a href = ..\\Screenshots\\{screenshotName + "_diff.png"} > Difference Screenshot</a>"
+                ActualResult = (
+                             ActualResult
+                                + f"snapshots do not match -> {diff_details}, "
+                                  f"\n\nsee the difference image in this location "
+                                  f"<a href='..\\Screenshots\\{screenshotName}_diff.png'>Difference Screenshot</a>"
+                            )
                 # <a href = ..\\Screenshots\\"+ str(self.screenshotlocation) + ">Screenshot</a>
                 FlagTestCase = "Fail"
             else:
@@ -16139,6 +16144,7 @@ class Actions():
                 ExpectedResult, ActualResult.strip(), FlagTestCase, TestCase_Summary
             )
             return driver
+
 
 
 
