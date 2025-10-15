@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 25  # prevent infinite hangs
+    timeout-minutes: 25
 
     steps:
     - name: Checkout code
@@ -53,23 +53,24 @@ jobs:
         rm -rf chromedriver-linux64*
         chromedriver --version
 
-    # 🔹 Clean old TestReports and run the test file
     - name: Run Selenium tests using framework
       env:
-            TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
-            PYTHONPATH: ${{ github.workspace }}
+        TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
+        PYTHONPATH: ${{ github.workspace }}
       run: |
-        echo "Cleaning old TestReports..."
-        rm -rf src/TestReports*
-        echo "Running test_Logic.py from src/Tests..."
-        cd src/Tests
-        python test_Logic.py
-        cd ../..
-        echo "After test run:"
-        ls -R src/
-    # 🔹 Upload the newly generated TestReports folder
-    - name: Upload TestReports folder
+        echo "🔹 Cleaning old reports..."
+        rm -rf src/TestReports* TestReports*
+
+        echo "🔹 Running Selenium tests..."
+        python src/Tests/test_Logic.py
+
+        echo "🔹 Listing files after test run:"
+        ls -R || true
+
+    - name: Upload generated TestReports folder
       uses: actions/upload-artifact@v4
       with:
         name: Selenium-TestReports
-        path: src/TestReports_*/
+        path: |
+          src/TestReports_*/
+          TestReports_*/
