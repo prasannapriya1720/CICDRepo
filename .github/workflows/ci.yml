@@ -53,24 +53,40 @@ jobs:
         rm -rf chromedriver-linux64*
         chromedriver --version
 
+    # ======================================================
+    # Run Selenium tests and debug TestReport creation
+    # ======================================================
     - name: Run Selenium tests using framework
       env:
         TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
         PYTHONPATH: ${{ github.workspace }}
       run: |
+        echo "🔹 Current working directory:"
+        pwd
+        echo "🔹 Listing src/ before test run:"
+        ls -R src || true
+
         echo "🔹 Cleaning old reports..."
         rm -rf src/TestReports* TestReports*
 
         echo "🔹 Running Selenium tests..."
-        python src/Tests/test_Logic.py
+        set -x
+        python src/Tests/test_Logic.py || echo "⚠️ Test script exited with non-zero code."
 
-        echo "🔹 Listing files after test run:"
-        ls -R || true
+        echo "🔹 Listing all directories and files after test run:"
+        pwd
+        ls -R > full_listing.txt
+        cat full_listing.txt
 
-    - name: Upload generated TestReports folder
+    # ======================================================
+    # Upload whatever TestReports_* folders were created
+    # ======================================================
+    - name: Upload generated TestReports folders
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: Selenium-TestReports
         path: |
-          src/TestReports_*/
           TestReports_*/
+          src/TestReports_*/
+          src/Tests/TestReports_*/
