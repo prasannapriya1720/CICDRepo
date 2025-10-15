@@ -272,7 +272,11 @@ class Actions():
                 start_time = time.time()
                 while True:
                     try:
-                        driver = webdriver.Chrome()
+                        chrome_options = Options()
+                        chrome_options.add_argument("--headless=new")
+                        chrome_options.add_argument("--no-sandbox")
+                        chrome_options.add_argument("--disable-dev-shm-usage")
+                        driver = webdriver.Chrome(options=chrome_options)
                         driver.implicitly_wait(10)
                         driver.maximize_window()
 
@@ -16147,6 +16151,7 @@ class Actions():
                 ExpectedResult, ActualResult.strip(), FlagTestCase, TestCase_Summary
             )
             return driver
+
 
 
 
