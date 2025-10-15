@@ -22,71 +22,38 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Cache pip
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys:
-            - ${{ runner.os }}-pip-
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest-html pytest-timeout Pillow openpyxl
+          pip install pytest-html pytest-timeout Pillow openpyxl selenium
 
       - name: Install Google Chrome
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget gnupg unzip xvfb libxi6 libgbm1 libxss1 libnss3 fonts-liberation libappindicator3-dev xdg-utils
+          sudo apt-get install -y wget unzip xvfb libxi6 libgbm1 libxss1 libnss3 fonts-liberation xdg-utils
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
 
       - name: Install ChromeDriver
         run: |
           CHROME_VERSION=$(google-chrome --version | grep -oE "[0-9]+(\.[0-9]+)+" | head -1)
-          echo "Detected Chrome version: $CHROME_VERSION"
           DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION%%.*}")
-          echo "Matching ChromeDriver version: $DRIVER_VERSION"
           wget -q "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
           unzip chromedriver-linux64.zip
           sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
           rm -rf chromedriver-linux64*
           chromedriver --version
 
-      - name: Debug: Current working directory and contents
-        run: |
-          echo "🔹 Current working directory:"
-          pwd
-          echo "🔹 Listing src/ before test run:"
-          ls -R src || true
-
-      - name: Clean old reports
-        run: |
-          echo "🔹 Cleaning old reports..."
-          rm -rf src/TestReports* TestReports*
-
-      - name: Run Selenium tests using framework
+      - name: Run Selenium tests
         env:
           TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
           PYTHONPATH: ${{ github.workspace }}
         run: |
-          echo "🔹 Running Selenium tests..."
-          set -x
-          python src/Tests/test_Logic.py || echo "⚠️ Test script exited with non-zero code."
+          mkdir -p TestReports
+          python src/Tests/test_Logic.py || echo "⚠️ Test script exited with non-zero code"
 
-          echo "🔹 Listing all directories and files after test run:"
-          pwd
-          ls -R > full_listing.txt
-          cat full_listing.txt
-
-      - name: Debug: List all TestReports folders
-        run: |
-          echo "🔹 Searching for TestReports folders"
-          find . -type d -name "TestReports*" || echo "No TestReports folder found"
-
-      - name: Upload generated TestReports folders
+      - name: Upload TestReports
         if: always()
         uses: actions/upload-artifact@v4
         with:
