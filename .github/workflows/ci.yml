@@ -56,17 +56,20 @@ jobs:
     # 🔹 Clean old TestReports and run the test file
     - name: Run Selenium tests using framework
       env:
-        TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
-        PYTHONPATH: ${{ github.workspace }}
+            TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
+            PYTHONPATH: ${{ github.workspace }}
       run: |
         echo "Cleaning old TestReports..."
-        rm -rf src/TestReports/*
-        echo "Running test_Logic.py..."
-        python src/Tests/test_Logic.py
-
+        rm -rf src/TestReports*
+        echo "Running test_Logic.py from src/Tests..."
+        cd src/Tests
+        python test_Logic.py
+        cd ../..
+        echo "After test run:"
+        ls -R src/
     # 🔹 Upload the newly generated TestReports folder
     - name: Upload TestReports folder
       uses: actions/upload-artifact@v4
       with:
         name: Selenium-TestReports
-        path: src/TestReports/
+        path: src/TestReports_*/
