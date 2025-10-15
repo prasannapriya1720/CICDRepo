@@ -57,19 +57,17 @@ jobs:
         chromedriver --version
 
     - name: Run Selenium tests
-      env:
-        TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
-        PYTHONPATH: ${{ github.workspace }}
-      run: |
-        pip install pytest-html pytest-timeout  # ✅ install both plugins
-        pytest -v -s --disable-warnings --maxfail=1 --timeout=300 \
-               --junitxml=results.xml \
-               --html=report.html --self-contained-html
+        env:
+      TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
+      PYTHONPATH: ${{ github.workspace }}
+    run: |
+      mkdir -p src/TestReports
+  
+      # Run your test script (ensure Reports.py is used)
+      python -m src.Tests.run_all_tests  # or whatever triggers your tests & report generation
 
-    - name: Upload HTML test report
-      uses: actions/upload-artifact@v4
-      with:
-        name: pytest-html-report
-        path: |
-          report.html
-          results.xml
+   - name: Upload full test report folder
+    uses: actions/upload-artifact@v4
+    with:
+      name: Selenium-Full-TestReport
+      path: src/TestReports/
