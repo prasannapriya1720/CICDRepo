@@ -61,7 +61,7 @@ jobs:
         TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
         PYTHONPATH: ${{ github.workspace }}
       run: |
-        pip install pytest-html
+        pip install pytest-html pytest-timeout  # ✅ install both plugins
         pytest -v -s --disable-warnings --maxfail=1 --timeout=300 \
                --junitxml=results.xml \
                --html=report.html --self-contained-html
