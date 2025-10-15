@@ -53,13 +53,13 @@ jobs:
         rm -rf chromedriver-linux64*
         chromedriver --version
 
-    # 🔹 Run your test framework (same as PyCharm)
-    - name: Run Selenium tests using framework
+    # 🔹 Run your actual test file (same logic as PyCharm)
+    - name: Run Selenium tests using test_Logic.py
       env:
         TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
         PYTHONPATH: ${{ github.workspace }}
       run: |
-        python src/Tests/run_all_tests.py
+        python src/Tests/test_Logic.py
 
     # 🔹 Upload the automatically generated TestReports folder
     - name: Upload TestReports folder
