@@ -61,10 +61,15 @@ jobs:
         TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
         PYTHONPATH: ${{ github.workspace }}
       run: |
-        pytest --maxfail=1 --disable-warnings -v --junitxml=results.xml
+        pip install pytest-html
+        pytest -v -s --disable-warnings --maxfail=1 --timeout=300 \
+               --junitxml=results.xml \
+               --html=report.html --self-contained-html
 
-    - name: Upload test results
+    - name: Upload HTML test report
       uses: actions/upload-artifact@v4
       with:
-        name: pytest-results
-        path: results.xml
+        name: pytest-html-report
+        path: |
+          report.html
+          results.xml
