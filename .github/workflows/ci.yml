@@ -55,16 +55,12 @@ jobs:
 
     - name: Run Selenium tests and generate full TestReports
       env:
-        TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
-        PYTHONPATH: ${{ github.workspace }}
+          TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
+          PYTHONPATH: ${{ github.workspace }}
       run: |
-       mkdir -p src/TestReports
-       pytest src/Tests/ --maxfail=1 --disable-warnings -v \
-          --html=src/TestReports/TestReport.html --self-contained-html
-
-
-        # Run your test script that uses Reports.py
-        python -m src.Tests.run_all_tests
+          mkdir -p src/TestReports
+          pytest src/Tests/ --maxfail=1 --disable-warnings -v \
+                --html=src/TestReports/TestReport.html --self-contained-html
 
     - name: Upload full TestReports folder
       uses: actions/upload-artifact@v4
