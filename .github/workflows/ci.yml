@@ -2,60 +2,74 @@ name: Run Selenium Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest-html pytest-timeout Pillow openpyxl selenium
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
-      - name: Install Google Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip xvfb libxi6 libgbm1 libxss1 libnss3 fonts-liberation xdg-utils
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
-      - name: Install ChromeDriver
-        run: |
-          CHROME_VERSION=$(google-chrome --version | grep -oE "[0-9]+(\.[0-9]+)+" | head -1)
-          DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION%%.*}")
-          wget -q "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
-          unzip chromedriver-linux64.zip
-          sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
-          rm -rf chromedriver-linux64*
-          chromedriver --version
+    - name: Install Google Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget gnupg unzip xvfb libxi6 libgbm1 libxss1 libnss3 fonts-liberation libappindicator3-dev xdg-utils
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
 
-      - name: Run Selenium tests
-        env:
-          TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
-          PYTHONPATH: ${{ github.workspace }}
-        run: |
-          mkdir -p TestReports
-          python src/Tests/test_Logic.py || echo "⚠️ Test script exited with non-zero code"
+    - name: Install ChromeDriver
+      run: |
+        # Get Chrome version
+        CHROME_VERSION=$(google-chrome --version | grep -oE "[0-9]+(\.[0-9]+)+" | head -1)
+        echo "Detected Chrome version: $CHROME_VERSION"
+        
+        # Get the matching ChromeDriver version
+        DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROME_VERSION%%.*}")
+        echo "Matching ChromeDriver version: $DRIVER_VERSION"
+        
+        # Download and install ChromeDriver
+        wget -q "https://storage.googleapis.com/chrome-for-testing-public/${DRIVER_VERSION}/linux64/chromedriver-linux64.zip"
+        unzip chromedriver-linux64.zip
+        sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
+        rm -rf chromedriver-linux64*
+        chromedriver --version
 
-      - name: Upload TestReports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: Selenium-TestReports
-          path: '**/TestReports*/'
+    - name: Run Selenium tests
+      env:
+        TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
+        PYTHONPATH: ${{ github.workspace }}
+      run: |
+        pip install pytest-html pytest-timeout  # ✅ install both plugins
+        pytest -v -s --disable-warnings --maxfail=1 --timeout=300 \
+               --junitxml=results.xml \
+               --html=report.html --self-contained-html
+
+    - name: Upload HTML test report
+      uses: actions/upload-artifact@v4
+      with:
+        name: pytest-html-report
+        path: |
+          report.html
+          results.xml
