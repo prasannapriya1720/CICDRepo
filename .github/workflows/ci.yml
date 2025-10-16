@@ -61,8 +61,11 @@ jobs:
         TEST_DATA_PATH: src/Data/CTKMS_R1_TestData.xlsx
         PYTHONPATH: ${{ github.workspace }}
       run: |
-        pip install pytest-html
-        pytest --html=report.html --self-contained-html
+        TIMESTAMP=$(date +'%d_%m_%Y_%H_%M_%S')
+        REPORT_DIR="src/TestReports/TestReports_$TIMESTAMP"
+        mkdir -p $REPORT_DIR
+        python -m pytest -v -s --disable-warnings --maxfail=1 --timeout=300 \
+          --junitxml=$REPORT_DIR/results.xml
 
     - name: Upload HTML test report
       uses: actions/upload-artifact@v4
